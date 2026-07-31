@@ -1,6 +1,6 @@
 extends Node
 
-@onready var WORD_DISPLAY : RichTextLabel = $Label
+@onready var WORD_DISPLAY : RichTextLabel = $DisplayLabel
 
 var WORD_ARRAY : String = ""
 var CHECK_ARRAY : String = ""

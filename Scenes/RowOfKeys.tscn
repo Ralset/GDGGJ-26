@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bqvuwmjwek2j6"]
 
-[ext_resource type="Script" uid="uid://7epk75q8ohvc" path="res://rowOfKeys.gd" id="1_q4qeg"]
+[ext_resource type="Script" uid="uid://7epk75q8ohvc" path="res://Scripts/rowOfKeys.gd" id="1_gxeov"]
 
 [node name="RowOfKeys" type="CanvasLayer" unique_id=598724246]
-script = ExtResource("1_q4qeg")
+script = ExtResource("1_gxeov")
 
 [node name="Background" type="ColorRect" parent="." unique_id=189803842]
 anchors_preset = 15
@@ -15,7 +15,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.13755062, 0.13755065, 0.13755062, 1)
 
-[node name="Label" type="RichTextLabel" parent="." unique_id=7927297]
+[node name="DisplayLabel" type="RichTextLabel" parent="." unique_id=7927297]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
