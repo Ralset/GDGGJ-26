@@ -10,10 +10,10 @@ func start() -> void:
 	in_progress = true
 	_start()
 
-func finished() -> void:
+func finish(passed : bool) -> void:
 	self.hide()
 	in_progress = false
-	_finished()
+	minigame_finished.emit(passed)
 
 func _process(delta: float) -> void:
 	if not in_progress:
@@ -33,6 +33,3 @@ func process(delta: float) -> void:
 
 func _start() -> void:
 	assert(false, "You must implement method start()")
-
-func _finished() -> void:
-	assert(false, "You must implement method finished()")
