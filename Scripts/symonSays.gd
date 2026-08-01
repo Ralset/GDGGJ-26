@@ -1,11 +1,13 @@
 extends minigame
 
 @onready var WORD_DISPLAY : RichTextLabel = $DisplayLabel
+@onready var ORDER_DISPLAY : RichTextLabel = $MarginContainer/OrderLabel
 
 var gottenWord : String = ""
 var PLAYER_INPUT : int
 var cooked : bool = false
 var symonSaid : bool
+var order : String = ""
 
 func _start() -> void:
 	WORD_DISPLAY.bbcode_enabled = true
@@ -17,13 +19,17 @@ func _finished() -> void:
 
 func genWord() -> void:
 	gottenWord = ""
+	order = ""
 	var rndLetter = randi_range(97, 122)
 	gottenWord += char(rndLetter)
 	var rnd : int = randi_range(1, 3)
 	if rnd == 1 or rnd == 2:
 		symonSaid = true
+		order += "symon says "
 	else:
 		symonSaid = false
+	order += "click " + gottenWord
+	ORDER_DISPLAY.text = order
 	print(symonSaid)
 
 func setWord() -> void:

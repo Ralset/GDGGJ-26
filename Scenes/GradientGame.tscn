@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://ew5woh84kpsb"]
+
+[ext_resource type="Script" uid="uid://bhskytsmgj23d" path="res://Scripts/gradient_game.gd" id="1_oimge"]
+[ext_resource type="Script" uid="uid://s1j7iw4gp0pd" path="res://Scenes/draggable_object.gd" id="2_byg7n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byg7n"]
+
+[node name="GradientGame" type="Control" unique_id=40155033]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=15748899]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.42, 0.42, 0.42, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2007887375]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -125.0
+offset_right = 387.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+script = ExtResource("1_oimge")
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1458129432]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_byg7n")
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Control" unique_id=131077941]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 111.0
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_byg7n")
+
+[connection signal="gui_input" from="HBoxContainer/Control" to="HBoxContainer/Control" method="_on_gui_input"]

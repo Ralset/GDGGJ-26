@@ -41,3 +41,21 @@ size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 48
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1018602721]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -307.0
+offset_right = 308.0
+offset_bottom = 198.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 24
+
+[node name="OrderLabel" type="RichTextLabel" parent="MarginContainer" unique_id=1053559383]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 48
+horizontal_alignment = 1
