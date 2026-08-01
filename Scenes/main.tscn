@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
+
+[ext_resource type="Script" uid="uid://df4v7s07k67la" path="res://Scripts/game_manager.gd" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://j37ccr8267vy" path="res://Scenes/ArrowsGame.tscn" id="2_kry3j"]
+[ext_resource type="PackedScene" uid="uid://bcagmoajt81or" path="res://Scenes/OrderBoxes.tscn" id="3_21xkr"]
+[ext_resource type="PackedScene" uid="uid://bqvuwmjwek2j6" path="res://Scenes/RowOfKeys.tscn" id="4_6bp64"]
+[ext_resource type="PackedScene" uid="uid://b1v7kdtwc0o7e" path="res://Scenes/SimonSays.tscn" id="5_344ge"]
+
+[node name="Main" type="Node2D" unique_id=152795313]
+script = ExtResource("1_jjgbg")
+
+[node name="Games" type="CanvasLayer" parent="." unique_id=1636978981]
+
+[node name="CanvasLayer" parent="Games" unique_id=1912471557 instance=ExtResource("2_kry3j")]
+
+[node name="OrderBoxes" parent="Games" unique_id=1705425106 instance=ExtResource("3_21xkr")]
+
+[node name="RowOfKeys" parent="Games" unique_id=598724246 instance=ExtResource("4_6bp64")]
+
+[node name="SymonSays" parent="Games" unique_id=226125644 instance=ExtResource("5_344ge")]
