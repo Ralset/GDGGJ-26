@@ -5,8 +5,9 @@ extends minigame
 var WORD_ARRAY : String = ""
 var CHECK_ARRAY : String = ""
 var x : int = 0
-var cooked : bool = false
-var passed : bool = false
+
+func _ready() -> void:
+	start()
 
 func _start() -> void:
 	WORD_DISPLAY.bbcode_enabled = true
@@ -24,34 +25,30 @@ func input(event: InputEvent) -> void:
 		return
 	if event.is_echo():            
 		return
-	if cooked:
-		return
 	if event.unicode == 0:
 		return
 	
 	var typed_letter: String = char(event.unicode)
 	
-	if x < CHECK_ARRAY.length():
-		if CHECK_ARRAY[x] == typed_letter:
-			var new = ""
-			for i in range(CHECK_ARRAY.length()):
-				if i <= x:
-					new += "[color=green]" + CHECK_ARRAY[i] + "[/color] "
-				else:
-					new += CHECK_ARRAY[i] + " "
-			WORD_DISPLAY.text = new
-			x += 1
-		else:
-			var new = ""
-			x = 0
-			for i in range(CHECK_ARRAY.length()):
-				if i <= x:
-					new += "[color=red]" + CHECK_ARRAY[i] + "[/color] "
-				else:
-					new += CHECK_ARRAY[i] + " "
-				x += 1
-			WORD_DISPLAY.text = new
-			cooked = true
+	if CHECK_ARRAY[x] == typed_letter:
+		var new = ""
+		for i in range(CHECK_ARRAY.length()):
+			if i <= x:
+				new += "[color=green]" + CHECK_ARRAY[i] + "[/color] "
+			else:
+				new += CHECK_ARRAY[i] + " "
+		WORD_DISPLAY.text = new
+		x += 1
+		if x == CHECK_ARRAY.length():
+			finish(true)
 	else:
-		cooked = true
-		passed = true
+		var new = ""
+		x = 0
+		for i in range(CHECK_ARRAY.length()):
+			if i <= x:
+				new += "[color=red]" + CHECK_ARRAY[i] + "[/color] "
+			else:
+				new += CHECK_ARRAY[i] + " "
+			x += 1
+		WORD_DISPLAY.text = new
+		finish(false)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://7epk75q8ohvc" path="res://Scripts/rowOfKeys.gd" id="1_gxeov"]
 
 [node name="RowOfKeys" type="Control" unique_id=484177179]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
