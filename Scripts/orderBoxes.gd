@@ -1,9 +1,12 @@
 extends Node
 
 @onready var BUTTON_ARRAY : Array[Button] = [$HBox/b1, $HBox/b2, $HBox/b3, $HBox/b4, $HBox/b5]
+@onready var ORDER_LABEL : RichTextLabel = $MarginContainer/OrderLabel
 
 var CHECK_ARRAY : Array[int] = [1,2,3,4,5]
 var CURRENT_ARRAY : Array[int] = []
+var LtoR : String = "ORDER\nLEFT-TO-RIGHT"
+var RtoL : String = "ORDER\nRIGHT-TO-LEFT"
 
 var button_clicked : int
 var x1 : int
@@ -15,6 +18,12 @@ func setBoxText() -> void:
 		BUTTON_ARRAY[i].text = str(CURRENT_ARRAY[i])
 
 func _ready() -> void:
+	var rnd = randi_range(1,2)
+	if rnd == 1:
+		ORDER_LABEL.text = LtoR
+	else:
+		ORDER_LABEL.text = RtoL
+		CHECK_ARRAY.reverse()
 	button_clicked = 0
 	CURRENT_ARRAY = CHECK_ARRAY.duplicate()
 	CURRENT_ARRAY.shuffle()

@@ -56,6 +56,23 @@ custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=54692136]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -307.0
+offset_right = 308.0
+offset_bottom = 198.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 24
+
+[node name="OrderLabel" type="RichTextLabel" parent="MarginContainer" unique_id=796832430]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 48
+horizontal_alignment = 1
+
 [connection signal="pressed" from="HBox/b1" to="." method="_on_b_1_pressed"]
 [connection signal="pressed" from="HBox/b2" to="." method="_on_b_2_pressed"]
 [connection signal="pressed" from="HBox/b3" to="." method="_on_b_3_pressed"]
