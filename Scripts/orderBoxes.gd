@@ -1,4 +1,4 @@
-extends Node
+extends minigame
 
 @onready var BUTTON_ARRAY : Array[Button] = [$HBox/b1, $HBox/b2, $HBox/b3, $HBox/b4, $HBox/b5]
 @onready var ORDER_LABEL : RichTextLabel = $MarginContainer/OrderLabel
@@ -17,7 +17,7 @@ func setBoxText() -> void:
 	for i in range(5):
 		BUTTON_ARRAY[i].text = str(CURRENT_ARRAY[i])
 
-func _ready() -> void:
+func _start() -> void:
 	var rnd = randi_range(1,2)
 	if rnd == 1:
 		ORDER_LABEL.text = LtoR
@@ -30,7 +30,7 @@ func _ready() -> void:
 	print(CURRENT_ARRAY)
 	setBoxText()
 
-func _process(delta: float) -> void:
+func process(delta: float) -> void:
 	if !done:
 		if button_clicked == 2:
 			var tmp = CURRENT_ARRAY[x1]

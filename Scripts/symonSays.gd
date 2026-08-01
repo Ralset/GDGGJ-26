@@ -1,4 +1,4 @@
-extends Node
+extends minigame
 
 @onready var WORD_DISPLAY : RichTextLabel = $DisplayLabel
 
@@ -6,6 +6,14 @@ var gottenWord : String = ""
 var PLAYER_INPUT : int
 var cooked : bool = false
 var symonSaid : bool
+
+func _start() -> void:
+	WORD_DISPLAY.bbcode_enabled = true
+	genWord()
+	setWord()
+
+func _finished() -> void:
+	minigame_finished.emit(!cooked)
 
 func genWord() -> void:
 	gottenWord = ""
@@ -21,11 +29,6 @@ func genWord() -> void:
 func setWord() -> void:
 	WORD_DISPLAY.text = gottenWord
 
-func _ready() -> void:
-	WORD_DISPLAY.bbcode_enabled = true
-	genWord()
-	setWord()
-	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.is_echo() and !cooked:
 		if event.unicode != 0:

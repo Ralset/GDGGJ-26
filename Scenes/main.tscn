@@ -6,15 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://bqvuwmjwek2j6" path="res://Scenes/RowOfKeys.tscn" id="4_6bp64"]
 [ext_resource type="PackedScene" uid="uid://b1v7kdtwc0o7e" path="res://Scenes/SimonSays.tscn" id="5_344ge"]
 
-[node name="Main" type="Node2D" unique_id=152795313]
+[node name="Main" type="Node2D" unique_id=152795313 node_paths=PackedStringArray("GAMES")]
 script = ExtResource("1_jjgbg")
+GAMES = [NodePath("Minigames/OrderBoxes")]
 
-[node name="Games" type="CanvasLayer" parent="." unique_id=1636978981]
+[node name="Minigames" type="CanvasLayer" parent="." unique_id=1636978981]
 
-[node name="CanvasLayer" parent="Games" unique_id=1912471557 instance=ExtResource("2_kry3j")]
+[node name="CanvasLayer" parent="Minigames" unique_id=1912471557 instance=ExtResource("2_kry3j")]
+visible = false
 
-[node name="OrderBoxes" parent="Games" unique_id=1705425106 instance=ExtResource("3_21xkr")]
+[node name="OrderBoxes" parent="Minigames" unique_id=1705425106 instance=ExtResource("3_21xkr")]
+visible = false
 
-[node name="RowOfKeys" parent="Games" unique_id=598724246 instance=ExtResource("4_6bp64")]
+[node name="RowOfKeys" parent="Minigames" unique_id=598724246 instance=ExtResource("4_6bp64")]
+visible = false
 
-[node name="SymonSays" parent="Games" unique_id=226125644 instance=ExtResource("5_344ge")]
+[node name="SymonSays" parent="Minigames" unique_id=226125644 instance=ExtResource("5_344ge")]
+visible = false
