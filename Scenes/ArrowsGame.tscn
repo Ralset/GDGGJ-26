@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://j37ccr8267vy"]
 
-[node name="CanvasLayer" type="Control" unique_id=386576490]
+[node name="ArrowsGame" type="Control" unique_id=386576490]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -2,14 +2,14 @@ extends minigame
 
 @onready var WORD_DISPLAY : RichTextLabel = $DisplayLabel
 
-var WORD_ARRAY : String = ""
-var CHECK_ARRAY : String = ""
-var x : int = 0
-
-func _ready() -> void:
-	start()
+var WORD_ARRAY : String
+var CHECK_ARRAY : String
+var x : int
 
 func _start() -> void:
+	WORD_ARRAY = ""
+	CHECK_ARRAY = ""
+	x = 0
 	WORD_DISPLAY.bbcode_enabled = true
 	for i in range(5):
 		var c = randi_range(97, 122)
@@ -19,6 +19,7 @@ func _start() -> void:
 	WORD_DISPLAY.text = WORD_ARRAY
 
 func input(event: InputEvent) -> void:
+	print(x)
 	if event is not InputEventKey: 
 		return
 	if not event.pressed:          
@@ -43,7 +44,6 @@ func input(event: InputEvent) -> void:
 			finish(true)
 	else:
 		var new = ""
-		x = 0
 		for i in range(CHECK_ARRAY.length()):
 			if i <= x:
 				new += "[color=red]" + CHECK_ARRAY[i] + "[/color] "

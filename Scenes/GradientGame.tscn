@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ew5woh84kpsb"]
 
-[ext_resource type="Script" uid="uid://tf1d5ptcp2t5" path="res://Scenes/gradient_game_manager.gd" id="1_ged52"]
+[ext_resource type="Script" uid="uid://tf1d5ptcp2t5" path="res://Scripts/gradient_game_manager.gd" id="1_ged52"]
 [ext_resource type="Script" uid="uid://bhskytsmgj23d" path="res://Scripts/gradient_game.gd" id="1_oimge"]
-[ext_resource type="Script" uid="uid://s1j7iw4gp0pd" path="res://Scenes/draggable_object.gd" id="2_byg7n"]
+[ext_resource type="Script" uid="uid://s1j7iw4gp0pd" path="res://Scripts/draggable_object.gd" id="2_byg7n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ged52"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

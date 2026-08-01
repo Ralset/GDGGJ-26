@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Script" uid="uid://df4v7s07k67la" path="res://Scripts/game_manager.gd" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://j37ccr8267vy" path="res://Scenes/ArrowsGame.tscn" id="2_kry3j"]
+[ext_resource type="PackedScene" uid="uid://dif5kofhb0yw7" path="res://Scenes/TapInOrder.tscn" id="2_6bp64"]
+[ext_resource type="PackedScene" uid="uid://ew5woh84kpsb" path="res://Scenes/GradientGame.tscn" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bcagmoajt81or" path="res://Scenes/OrderBoxes.tscn" id="3_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bqvuwmjwek2j6" path="res://Scenes/RowOfKeys.tscn" id="4_6bp64"]
 [ext_resource type="PackedScene" uid="uid://b1v7kdtwc0o7e" path="res://Scenes/SimonSays.tscn" id="5_344ge"]
@@ -12,14 +13,17 @@ GAMES = [NodePath("Minigames/OrderBoxes")]
 
 [node name="Minigames" type="CanvasLayer" parent="." unique_id=1636978981]
 
-[node name="CanvasLayer" parent="Minigames" unique_id=1912471557 instance=ExtResource("2_kry3j")]
-visible = false
-
-[node name="OrderBoxes" parent="Minigames" unique_id=1705425106 instance=ExtResource("3_21xkr")]
+[node name="SymonSays" parent="Minigames" unique_id=226125644 instance=ExtResource("5_344ge")]
 visible = false
 
 [node name="RowOfKeys" parent="Minigames" unique_id=598724246 instance=ExtResource("4_6bp64")]
 visible = false
 
-[node name="SymonSays" parent="Minigames" unique_id=226125644 instance=ExtResource("5_344ge")]
+[node name="OrderBoxes" parent="Minigames" unique_id=1705425106 instance=ExtResource("3_21xkr")]
+visible = false
+
+[node name="TapInOrder" parent="Minigames" unique_id=602348723 instance=ExtResource("2_6bp64")]
+visible = false
+
+[node name="GradientGame" parent="Minigames" unique_id=40155033 instance=ExtResource("2_21xkr")]
 visible = false

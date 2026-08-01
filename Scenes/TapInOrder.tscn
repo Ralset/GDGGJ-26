@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0.13755062, 0.13755065, 0.13755062, 1)
+color = Color(0.41960785, 0.41960785, 0.41960785, 1)
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=444052170]
 layout_mode = 1

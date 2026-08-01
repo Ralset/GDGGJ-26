@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0.13755062, 0.13755065, 0.13755062, 1)
+color = Color(0.41960785, 0.41960785, 0.41960785, 1)
 
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1851909767]
 layout_mode = 1
@@ -31,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -410.75
+offset_top = -83.75
+offset_right = 410.75
+offset_bottom = 83.75
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -44,26 +44,31 @@ theme_override_constants/separation = 20
 [node name="b1" type="Button" parent="HBox" unique_id=413073907]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 
 [node name="b2" type="Button" parent="HBox" unique_id=540713629]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 
 [node name="b3" type="Button" parent="HBox" unique_id=1587979089]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 
 [node name="b4" type="Button" parent="HBox" unique_id=1449290689]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 
 [node name="b5" type="Button" parent="HBox" unique_id=797305908]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=54692136]

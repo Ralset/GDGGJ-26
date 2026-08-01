@@ -4,18 +4,18 @@ extends minigame
 @onready var ORDER_DISPLAY : RichTextLabel = $MarginContainer/OrderLabel
 
 var gottenWord : String = ""
-var PLAYER_INPUT : int
-var cooked : bool = false
 var symonSaid : bool
 var order : String = ""
+var cnt : int = 0
+const NUM_OF_RUNS : int = 5
 
 func _start() -> void:
+	cnt = 0
+	WORD_DISPLAY.add_theme_color_override("default_color", Color.WHITE)
+	ORDER_DISPLAY.add_theme_color_override("default_color", Color.WHITE)
 	WORD_DISPLAY.bbcode_enabled = true
 	genWord()
 	setWord()
-
-func _finished() -> void:
-	minigame_finished.emit(!cooked)
 
 func genWord() -> void:
 	gottenWord = ""
@@ -25,7 +25,7 @@ func genWord() -> void:
 	var rnd : int = randi_range(1, 3)
 	if rnd == 1 or rnd == 2:
 		symonSaid = true
-		order += "symon says "
+		order += "Simon says "
 	else:
 		symonSaid = false
 	order += "click " + gottenWord
@@ -35,15 +35,27 @@ func genWord() -> void:
 func setWord() -> void:
 	WORD_DISPLAY.text = gottenWord
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.is_echo() and !cooked:
-		if event.unicode != 0:
-			PLAYER_INPUT = event.unicode
-			var typed_letter: String = char(PLAYER_INPUT)
-			if (gottenWord == typed_letter and symonSaid) or (typed_letter == " " and symonSaid == false):
-				genWord()
-				setWord()
-			else:
-				var new : String = "[color=red]" + gottenWord + "[/color]"
-				WORD_DISPLAY.text = new
-				cooked = true
+func input(event: InputEvent) -> void:
+	if event is not InputEventKey: 
+		return
+	if not event.pressed:          
+		return
+	if event.is_echo():            
+		return
+	if event.unicode == 0:
+		return
+	
+	var typed_letter: String = char(event.unicode)
+	if (gottenWord == typed_letter and symonSaid) or (typed_letter == " " and symonSaid == false):
+		cnt += 1
+		if cnt == NUM_OF_RUNS:
+			WORD_DISPLAY.add_theme_color_override("default_color", Color.GREEN)
+			ORDER_DISPLAY.add_theme_color_override("default_color", Color.GREEN)
+			finish(true)
+		else:
+			genWord()
+			setWord()
+	else:
+			WORD_DISPLAY.add_theme_color_override("default_color", Color.RED)
+			ORDER_DISPLAY.add_theme_color_override("default_color", Color.RED)
+			finish(false)
