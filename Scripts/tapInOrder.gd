@@ -49,7 +49,6 @@ func _start() -> void:
 	for i in range(8):
 		CHECK_ARRAY.append(i + 1)
 	
-	print(CHECK_ARRAY)
 	DISPLAY_ARRAY = CHECK_ARRAY.duplicate()
 	DISPLAY_ARRAY.shuffle()
 	createButtons()

@@ -28,12 +28,11 @@ func genWord() -> void:
 		order += "Simon says "
 	else:
 		symonSaid = false
-	order += "click " + gottenWord
+	order += "Click: \"" + gottenWord.to_upper() + "\""
 	ORDER_DISPLAY.text = order
-	print(symonSaid)
 
 func setWord() -> void:
-	WORD_DISPLAY.text = gottenWord
+	WORD_DISPLAY.text = gottenWord.to_upper()
 
 func input(event: InputEvent) -> void:
 	if event is not InputEventKey: 

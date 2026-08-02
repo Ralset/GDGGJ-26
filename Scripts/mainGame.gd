@@ -12,7 +12,6 @@ var target_number : int = 5
 
 func _ready() -> void:
 	SAFE_LOCK.rotation = 0
-	start(randi_range(1,5))	#izbrisati posle
 
 func start(target_number : int):
 	self.target_number = target_number
