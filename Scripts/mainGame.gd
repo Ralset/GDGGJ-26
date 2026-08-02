@@ -5,26 +5,29 @@ signal finished()
 @onready var SAFE_LOCK : TextureButton = $SafeLock
 @onready var GLIBA : TextureRect = $SafeLock/rotaryshit
 
-@export var SLOWNESS_FACTOR : float = 1
+@export var UNWINDING : float = 20
+@export var WINDING : float = 2.5
+@export var RESET : float = 0.5
 
 var toggled : bool = false
 var finished_unwinding : bool = true
-var target_number : int = 5
+var target_number : int
 
 func _ready() -> void:
 	GLIBA.rotation = 0
 
-func start(target_number : int):
-	self.target_number = target_number
+func start(num : int):
+	target_number = num
+	print("START sa ", target_number)
 	finished_unwinding = false
-	GLIBA.disabled = true
+	SAFE_LOCK.disabled = true
 
 func _process(delta: float) -> void:
 	if !finished_unwinding:
 		if GLIBA.rotation <= 0:
 			finished_unwinding = true
-			GLIBA.disabled = false
-		GLIBA.rotation -= delta / SLOWNESS_FACTOR
+			SAFE_LOCK.disabled = false
+		GLIBA.rotation -= delta / RESET
 		return
 	
 	GLIBA.rotation = max(0, GLIBA.rotation)
@@ -34,9 +37,9 @@ func _process(delta: float) -> void:
 		return
 	
 	if toggled and GLIBA.rotation < target_number :
-		GLIBA.rotation += delta / SLOWNESS_FACTOR
+		GLIBA.rotation += delta / WINDING
 	elif GLIBA.rotation > 0 and toggled == false:
-		GLIBA.rotation -= delta / SLOWNESS_FACTOR
+		GLIBA.rotation -= delta / UNWINDING
 	
 
 func _on_safe_lock_button_down() -> void:
