@@ -4,19 +4,19 @@ extends Control
 @export var num_of_games : int = 5
 @export var LOCK_CNT : int = 5
 @export var LOCKS_DONE : int = 0
+@export var cognitive_decline : Array[float] = [10, 12, 14, 16, 20]
 #@export var DIFFICULTY : int = 12
 
 @onready var attention_bar : ProgressBar = $Overlay/ProgressBar
 @onready var room : Control = $Room
 @onready var mainGame : Control = $Room/MainGame
 @onready var lockCounter : RichTextLabel = $Overlay/LockPickedCounter
-@onready var timer : Timer = $Overlay/TimeLeft
+@onready var timer : Timer = $TimeLeft
 @onready var timerDisplay : Label = $Overlay/TimerDisplay
 @onready var vignete = $Overlay/TextureRect
 
 
 var attention : float
-var cognitive_decline : float = 10
 var current_game_id : int
 var games_passed : int
 var combination : Array[int]
@@ -71,7 +71,7 @@ func _process(delta: float) -> void:
 		await room.finishedMovement
 		minigame_cycle()
 	else:
-		attention -= delta * cognitive_decline
+		attention -= delta * cognitive_decline[number_idx]
 	attention = maxf(0, attention)
 	#attention_bar.value = attention
 	if not MINIGAME_STATE:

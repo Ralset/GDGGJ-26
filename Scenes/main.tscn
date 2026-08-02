@@ -38,6 +38,11 @@ grow_vertical = 2
 script = ExtResource("1_jjgbg")
 GAMES = [NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/OrderBoxes"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/SymonSays"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/RowOfKeys"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/TapInOrder")]
 
+[node name="TimeLeft" type="Timer" parent="." unique_id=1245538273]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
 [node name="Overlay" type="CanvasLayer" parent="." unique_id=1636978981]
 
 [node name="Panorama effect" type="ColorRect" parent="Overlay" unique_id=989186624]
@@ -78,10 +83,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 metadata/_edit_use_anchors_ = true
-
-[node name="TimeLeft" type="Timer" parent="Overlay" unique_id=1245538273]
-wait_time = 10.0
-autostart = true
 
 [node name="TimerDisplay" type="Label" parent="Overlay" unique_id=833520363]
 anchors_preset = 7
