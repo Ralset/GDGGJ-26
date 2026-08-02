@@ -14,8 +14,8 @@ extends Control
 @onready var timer : Timer = $TimeLeft
 @onready var timerDisplay : Label = $Overlay/TimerDisplay
 @onready var vignete = $Overlay/TextureRect
-
-
+@onready var flight = $Overlay/Path2D/PathFollow2D
+@onready var bars = $Overlay/bars 
 var attention : float
 var current_game_id : int
 var games_passed : int
@@ -57,8 +57,6 @@ func _on_found_number() -> void:
 func _process(delta: float) -> void:
 	timerDisplay.text = str(ceil(timer.time_left))
 	
-	if timer.time_left < 0.1:
-		print("cooked")
 	
 	if MINIGAME_STATE:
 		return
@@ -107,3 +105,12 @@ func _on_minigame_finished(passed : bool) -> void:
 		minigame_cycle()
 	else:
 		restart_game()
+
+
+func _on_time_left_timeout() -> void:
+	flight.show()
+	var tween = create_tween()
+	tween.tween_property(flight, "progress_ratio", 1.0, 1.5).set_trans(Tween.TRANS_EXPO)
+	await tween.finished
+	var seen = create_tween()
+	seen.tween_property(bars, "position:y", 349.305, 0.5)

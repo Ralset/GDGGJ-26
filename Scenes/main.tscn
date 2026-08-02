@@ -4,10 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://dif5kofhb0yw7" path="res://Scenes/TapInOrder.tscn" id="2_6bp64"]
 [ext_resource type="PackedScene" uid="uid://ew5woh84kpsb" path="res://Scenes/GradientGame.tscn" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cc3da7rvyspug" path="res://Scenes/MainGame.tscn" id="2_344ge"]
+[ext_resource type="Texture2D" uid="uid://c88ls8nije0mn" path="res://Assets/bleog.png" id="3_6iyac"]
 [ext_resource type="PackedScene" uid="uid://bcagmoajt81or" path="res://Scenes/OrderBoxes.tscn" id="3_21xkr"]
 [ext_resource type="Script" uid="uid://sklidsjx7nh0" path="res://Scenes/room.gd" id="3_hptm8"]
 [ext_resource type="PackedScene" uid="uid://bqvuwmjwek2j6" path="res://Scenes/RowOfKeys.tscn" id="4_6bp64"]
 [ext_resource type="Texture2D" uid="uid://jqovlw04s2d" path="res://Assets/bg.png" id="4_d1ilt"]
+[ext_resource type="Texture2D" uid="uid://nlekajnsmn61" path="res://Assets/bars.png" id="4_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://cuuas1v4thh64" path="res://Assets/telefone.png" id="4_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://b1v7kdtwc0o7e" path="res://Scenes/SimonSays.tscn" id="5_344ge"]
 [ext_resource type="Shader" uid="uid://q2ie4k551uoa" path="res://Shaders/Panorama.gdshader" id="7_6bp64"]
@@ -28,6 +30,12 @@ gradient = SubResource("Gradient_d1ilt")
 fill = 1
 fill_from = Vector2(0.51282054, 0.5534188)
 
+[sub_resource type="Curve2D" id="Curve2D_fdnlq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1736, 344, 0, 0, 0, 0, 1005, 695, 0, 0, 0, 0, 878, 662, 0, 0, 0, 0, 740, 650, 0, 0, 0, 0, 569, 631, 0, 0, 0, 0, 424, 470)
+}
+point_count = 6
+
 [node name="Main" type="Control" unique_id=1673963374 node_paths=PackedStringArray("GAMES")]
 layout_mode = 3
 anchors_preset = 15
@@ -39,7 +47,7 @@ script = ExtResource("1_jjgbg")
 GAMES = [NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/OrderBoxes"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/SymonSays"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/RowOfKeys"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/TapInOrder")]
 
 [node name="TimeLeft" type="Timer" parent="." unique_id=1245538273]
-wait_time = 10.0
+wait_time = 0.003
 one_shot = true
 autostart = true
 
@@ -69,6 +77,7 @@ offset_right = 1158.0
 offset_bottom = 699.0
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_7y1x5")
+metadata/_edit_lock_ = true
 
 [node name="LockPickedCounter" type="RichTextLabel" parent="Overlay" unique_id=1358619602]
 anchors_preset = 2
@@ -83,6 +92,22 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 metadata/_edit_use_anchors_ = true
+
+[node name="Path2D" type="Path2D" parent="Overlay" unique_id=1299892049]
+curve = SubResource("Curve2D_fdnlq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Overlay/Path2D" unique_id=91213862]
+visible = false
+position = Vector2(1713.1394, 354.97687)
+rotation = 2.674868
+progress = 25.388306
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Overlay/Path2D/PathFollow2D" unique_id=616729343]
+position = Vector2(-199.22787, -30.982033)
+rotation = 3.4278266
+scale = Vector2(1.7856246, 1.7856246)
+texture = ExtResource("3_6iyac")
 
 [node name="TimerDisplay" type="Label" parent="Overlay" unique_id=833520363]
 anchors_preset = 7
@@ -101,6 +126,11 @@ size_flags_vertical = 6
 theme_override_font_sizes/font_size = 48
 metadata/_edit_use_anchors_ = true
 
+[node name="bars" type="Sprite2D" parent="Overlay" unique_id=95985095]
+position = Vector2(583.75, -500)
+scale = Vector2(1.4388264, 1.6809524)
+texture = ExtResource("4_fdnlq")
+
 [node name="Room" type="Control" parent="." unique_id=499795800]
 layout_mode = 1
 anchors_preset = 15
@@ -109,6 +139,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_hptm8")
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Room" unique_id=1863089099]
 layout_mode = 1
@@ -123,6 +154,7 @@ grow_vertical = 2
 texture = ExtResource("4_d1ilt")
 expand_mode = 1
 stretch_mode = 4
+metadata/_edit_lock_ = true
 
 [node name="MainGame" parent="Room" unique_id=224749775 instance=ExtResource("2_344ge")]
 layout_mode = 1
@@ -130,6 +162,7 @@ offset_left = 579.0
 offset_top = 398.0
 offset_right = 579.0
 offset_bottom = 398.0
+metadata/_edit_lock_ = true
 
 [node name="Phone" type="TextureRect" parent="Room" unique_id=905974307]
 layout_mode = 1
@@ -144,6 +177,7 @@ grow_vertical = 2
 texture = ExtResource("4_ynf5e")
 expand_mode = 2
 stretch_mode = 4
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Room/Phone" unique_id=739565038]
 layout_mode = 1
@@ -193,3 +227,5 @@ visible = false
 
 [node name="GradientGame" parent="Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport" unique_id=40155033 instance=ExtResource("2_21xkr")]
 visible = false
+
+[connection signal="timeout" from="TimeLeft" to="." method="_on_time_left_timeout"]
