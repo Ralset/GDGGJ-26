@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b1v7kdtwc0o7e"]
 
-[ext_resource type="Script" uid="uid://bf7a0rbw8i5vp" path="res://Scripts/symonSays.gd" id="1_w4r3a"]
+[ext_resource type="Script" uid="uid://bf7a0rbw8i5vp" path="res://Scripts/simonSays.gd" id="1_w4r3a"]
 
-[node name="SymonSays" type="Control" unique_id=198257392]
+[node name="SimonSays" type="Control" unique_id=198257392]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

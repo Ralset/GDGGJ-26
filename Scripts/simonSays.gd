@@ -4,7 +4,7 @@ extends minigame
 @onready var ORDER_DISPLAY : RichTextLabel = $MarginContainer/OrderLabel
 
 var gottenWord : String = ""
-var symonSaid : bool
+var simonSaid : bool
 var order : String = ""
 var cnt : int = 0
 const NUM_OF_RUNS : int = 5
@@ -18,16 +18,17 @@ func _start() -> void:
 	setWord()
 
 func genWord() -> void:
-	gottenWord = ""
-	order = ""
 	var rndLetter = randi_range(97, 122)
-	gottenWord += char(rndLetter)
-	var rnd : int = randi_range(1, 3)
-	if rnd == 1 or rnd == 2:
-		symonSaid = true
+	while char(rndLetter) == gottenWord: 
+		rndLetter = randi_range(97, 122)
+	
+	gottenWord = char(rndLetter)
+	order = ""
+	if randi_range(1, 3) != 1:
+		simonSaid = true
 		order += "Simon says "
 	else:
-		symonSaid = false
+		simonSaid = false
 	order += "Click: \"" + gottenWord.to_upper() + "\""
 	ORDER_DISPLAY.text = order
 
@@ -44,17 +45,21 @@ func input(event: InputEvent) -> void:
 	if event.unicode == 0:
 		return
 	
-	var typed_letter: String = char(event.unicode)
-	if (gottenWord == typed_letter and symonSaid) or (typed_letter == " " and symonSaid == false):
+	if (char(event.unicode) == gottenWord) == simonSaid:
 		cnt += 1
 		if cnt == NUM_OF_RUNS:
 			WORD_DISPLAY.add_theme_color_override("default_color", Color.GREEN)
 			ORDER_DISPLAY.add_theme_color_override("default_color", Color.GREEN)
 			finish(true)
 		else:
+			WORD_DISPLAY.add_theme_color_override("default_color", Color.GREEN)
+			ORDER_DISPLAY.add_theme_color_override("default_color", Color.GREEN)
+			await get_tree().create_timer(0.25).timeout
+			WORD_DISPLAY.add_theme_color_override("default_color", Color.WHITE)
+			ORDER_DISPLAY.add_theme_color_override("default_color", Color.WHITE)
 			genWord()
 			setWord()
 	else:
-			WORD_DISPLAY.add_theme_color_override("default_color", Color.RED)
-			ORDER_DISPLAY.add_theme_color_override("default_color", Color.RED)
-			finish(false)
+		WORD_DISPLAY.add_theme_color_override("default_color", Color.RED)
+		ORDER_DISPLAY.add_theme_color_override("default_color", Color.RED)
+		finish(false)

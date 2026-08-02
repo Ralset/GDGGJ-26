@@ -48,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
-GAMES = [NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/OrderBoxes"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/SymonSays"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/RowOfKeys"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/TapInOrder")]
+GAMES = [NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/OrderBoxes"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/RowOfKeys"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/TapInOrder"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/SimonSays")]
 num_of_games = 3
 
 [node name="TimeLeft" type="Timer" parent="." unique_id=1245538273]
@@ -259,7 +259,7 @@ size = Vector2i(544, 367)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="SymonSays" parent="Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport" unique_id=226125644 instance=ExtResource("5_344ge")]
+[node name="SimonSays" parent="Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport" unique_id=198257392 instance=ExtResource("5_344ge")]
 visible = false
 
 [node name="RowOfKeys" parent="Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport" unique_id=598724246 instance=ExtResource("4_6bp64")]
