@@ -1,4 +1,4 @@
-extends Node
+extends minigame
 
 @onready var HBox1 : HBoxContainer = $VBox/HB1
 @onready var HBox2 : HBoxContainer = $VBox/HB2
@@ -6,7 +6,6 @@ extends Node
 var CHECK_ARRAY : Array[int]  = []
 var DISPLAY_ARRAY : Array[int]  = []
 var x : int = 0
-var game_end : bool = false
 
 var button_array : Array[Button] = []
 
@@ -25,25 +24,32 @@ func createButtons() -> void:
 		button_array.append(btn)
 
 func _on_button_pressed(num: int, index: int) -> void:
-	if game_end:
-		return
-	
-	if x >= 7:
+	if x+1 == button_array.size():
 		button_array[index].add_theme_color_override("font_color", Color.GREEN)
-		print("ggs")
-		game_end = true
+		_on_game_finish(true)
 		return
 	if CHECK_ARRAY[x] != num:
 		for btn in button_array:
 			btn.add_theme_color_override("font_color", Color.RED)
-		game_end = true
+		_on_game_finish(false)
 		return
-	button_array[index].add_theme_color_override("font_color", Color.GREEN)
 	x += 1
+	button_array[index].add_theme_color_override("font_color", Color.GREEN)
 
-func _ready() -> void:
+func _on_game_finish(passed : bool) -> void:
+	for btn in button_array:
+		btn.queue_free()
+	finish(passed)
+
+func _start() -> void:
+	x = 0
+	button_array = []
+	CHECK_ARRAY = []
+	DISPLAY_ARRAY = []
 	for i in range(8):
 		CHECK_ARRAY.append(i + 1)
+	
+	print(CHECK_ARRAY)
 	DISPLAY_ARRAY = CHECK_ARRAY.duplicate()
 	DISPLAY_ARRAY.shuffle()
 	createButtons()

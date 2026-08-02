@@ -27,13 +27,12 @@ func _process(delta: float) -> void:
 		SAFE_LOCK.rotation -= delta / SLOWNESS_FACTOR
 		return
 	
-	print(SAFE_LOCK.rotation)
 	SAFE_LOCK.rotation = max(0, SAFE_LOCK.rotation)
 	if SAFE_LOCK.rotation >= target_number:
 		SAFE_LOCK.rotation = target_number
 		finished.emit()
-		start(randi_range(1,5))
-		
+		return
+	
 	if toggled and SAFE_LOCK.rotation < target_number :
 		SAFE_LOCK.rotation += delta / SLOWNESS_FACTOR
 	elif SAFE_LOCK.rotation > 0 and toggled == false:

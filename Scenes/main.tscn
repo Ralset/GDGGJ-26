@@ -3,27 +3,59 @@
 [ext_resource type="Script" uid="uid://df4v7s07k67la" path="res://Scripts/game_manager.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://dif5kofhb0yw7" path="res://Scenes/TapInOrder.tscn" id="2_6bp64"]
 [ext_resource type="PackedScene" uid="uid://ew5woh84kpsb" path="res://Scenes/GradientGame.tscn" id="2_21xkr"]
+[ext_resource type="PackedScene" uid="uid://cc3da7rvyspug" path="res://Scenes/MainGame.tscn" id="2_344ge"]
 [ext_resource type="PackedScene" uid="uid://bcagmoajt81or" path="res://Scenes/OrderBoxes.tscn" id="3_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bqvuwmjwek2j6" path="res://Scenes/RowOfKeys.tscn" id="4_6bp64"]
 [ext_resource type="PackedScene" uid="uid://b1v7kdtwc0o7e" path="res://Scenes/SimonSays.tscn" id="5_344ge"]
+[ext_resource type="Shader" uid="uid://q2ie4k551uoa" path="res://Shaders/Panorama.gdshader" id="7_6bp64"]
 
-[node name="Main" type="Node2D" unique_id=152795313 node_paths=PackedStringArray("GAMES")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcp7b"]
+shader = ExtResource("7_6bp64")
+shader_parameter/zoom = 75
+shader_parameter/smoothed = true
+shader_parameter/vertical = false
+shader_parameter/noWrap = true
+
+[node name="Main" type="Control" unique_id=1673963374 node_paths=PackedStringArray("GAMES")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_jjgbg")
-GAMES = [NodePath("Minigames/OrderBoxes")]
+GAMES = [NodePath("OrderBoxes"), NodePath("SymonSays"), NodePath("RowOfKeys"), NodePath("TapInOrder")]
+
+[node name="MainGame" parent="." unique_id=224749775 instance=ExtResource("2_344ge")]
+layout_mode = 1
+
+[node name="SymonSays" parent="." unique_id=226125644 instance=ExtResource("5_344ge")]
+visible = false
+layout_mode = 1
+
+[node name="RowOfKeys" parent="." unique_id=598724246 instance=ExtResource("4_6bp64")]
+visible = false
+layout_mode = 1
+
+[node name="OrderBoxes" parent="." unique_id=1705425106 instance=ExtResource("3_21xkr")]
+visible = false
+layout_mode = 1
+
+[node name="TapInOrder" parent="." unique_id=602348723 instance=ExtResource("2_6bp64")]
+visible = false
+layout_mode = 1
+
+[node name="GradientGame" parent="." unique_id=40155033 instance=ExtResource("2_21xkr")]
+visible = false
+layout_mode = 1
 
 [node name="Minigames" type="CanvasLayer" parent="." unique_id=1636978981]
 
-[node name="SymonSays" parent="Minigames" unique_id=226125644 instance=ExtResource("5_344ge")]
-visible = false
-
-[node name="RowOfKeys" parent="Minigames" unique_id=598724246 instance=ExtResource("4_6bp64")]
-visible = false
-
-[node name="OrderBoxes" parent="Minigames" unique_id=1705425106 instance=ExtResource("3_21xkr")]
-visible = false
-
-[node name="TapInOrder" parent="Minigames" unique_id=602348723 instance=ExtResource("2_6bp64")]
-visible = false
-
-[node name="GradientGame" parent="Minigames" unique_id=40155033 instance=ExtResource("2_21xkr")]
-visible = false
+[node name="ColorRect" type="ColorRect" parent="Minigames" unique_id=989186624]
+material = SubResource("ShaderMaterial_jcp7b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

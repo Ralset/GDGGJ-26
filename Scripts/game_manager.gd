@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @export var GAMES : Array[minigame]
 
@@ -8,7 +8,11 @@ func _ready() -> void:
 	start_new_game()
 
 func start_new_game() -> void:
-	current_game_id = randi_range(0, GAMES.size() - 1)
+	var new_game_pick = randi_range(0, GAMES.size() - 1)
+	while new_game_pick == current_game_id:
+		new_game_pick = randi_range(0, GAMES.size() - 1)
+		
+	current_game_id = new_game_pick
 	
 	GAMES[current_game_id].connect("minigame_finished", _on_minigame_finished)
 	GAMES[current_game_id].start()
