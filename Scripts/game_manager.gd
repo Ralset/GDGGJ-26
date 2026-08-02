@@ -16,6 +16,10 @@ extends Control
 @onready var vignete = $Overlay/TextureRect
 @onready var flight = $Overlay/Path2D/PathFollow2D
 @onready var bars = $Overlay/bars 
+
+@onready var safedoor = $Overlay/safedoor
+@onready var opensafe = $Overlay/opensafe
+@onready var miniflight = $Overlay/miniflight
 var attention : float
 var current_game_id : int
 var games_passed : int
@@ -34,6 +38,7 @@ func _ready() -> void:
 	number_idx = 0
 	_next_number()
 	MINIGAME_STATE = false
+	_on_win()
 
 func _generate_combination() -> void:
 	#var sum : int = DIFFICULTY
@@ -45,18 +50,35 @@ func _next_number() -> void:
 	print(number_idx)
 	mainGame.start(combination[number_idx])
 
+func _on_win():
+	print("WIN")
+	timer.stop()
+	safedoor.show()
+	opensafe.show()
+	miniflight.show()
+	var twin = create_tween()
+	twin.tween_property(safedoor, "position:x", 450, 2.0)
+	await twin.finished
+	
+	var been = create_tween()
+	been.tween_property(miniflight, "scale", Vector2(2.0, 2.0), 0.75).set_trans(Tween.TRANS_EXPO)
+	await been.finished
+	var seen = create_tween()
+	seen.tween_property(bars, "position:y", 349.305, 2.5)
+
 func _on_found_number() -> void:
 	number_idx += 1
 	LOCKS_DONE += 1
 	lockCounter.text = str(LOCKS_DONE) + " / " + str(LOCK_CNT)
 	if number_idx == LOCK_CNT:
-		print("WIN")
+		_on_win()
 	else:
 		_next_number()
 
 func _process(delta: float) -> void:
 	timerDisplay.text = str(ceil(timer.time_left))
-	
+	if LOCKS_DONE == LOCK_CNT:
+		return
 	
 	if MINIGAME_STATE:
 		return
@@ -113,4 +135,4 @@ func _on_time_left_timeout() -> void:
 	tween.tween_property(flight, "progress_ratio", 1.0, 1.5).set_trans(Tween.TRANS_EXPO)
 	await tween.finished
 	var seen = create_tween()
-	seen.tween_property(bars, "position:y", 349.305, 0.5)
+	seen.tween_property(bars, "position:y", 349.305, 2.5)
