@@ -37,6 +37,7 @@ func input(event: InputEvent) -> void:
 				new += "[color=green]" + CHECK_ARRAY[i].to_upper() + "[/color] "
 			else:
 				new += CHECK_ARRAY[i].to_upper() + " "
+		new[new.length() - 1] = ""
 		WORD_DISPLAY.text = new
 		x += 1
 		if x == CHECK_ARRAY.length():
@@ -49,5 +50,6 @@ func input(event: InputEvent) -> void:
 			else:
 				new += CHECK_ARRAY[i].to_upper() + " "
 			x += 1
+		new[new.length() - 1] = ""
 		WORD_DISPLAY.text = new
 		finish(false)

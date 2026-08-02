@@ -13,6 +13,7 @@ func start() -> void:
 func finish(passed : bool) -> void:
 	in_progress = false
 	await get_tree().create_timer(0.5).timeout
+	_finish()
 	self.hide()
 	minigame_finished.emit(passed)
 
@@ -30,6 +31,9 @@ func input(event: InputEvent) -> void:
 	pass
 
 func process(delta: float) -> void:
+	pass
+
+func _finish() -> void:
 	pass
 
 func _start() -> void:
