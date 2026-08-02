@@ -4,13 +4,15 @@ extends Control
 @export var num_of_games : int = 5
 
 @onready var attention_bar : ProgressBar = $Overlay/ProgressBar
-
+@onready var room : Control = $Room
 var attention : float
 var cognitive_decline : float = 10
 var current_game_id : int
 var games_passed : int
 
 var MINIGAME_STATE : bool = false
+
+signal begunMinigame
 
 func _ready() -> void:
 	attention = 100
@@ -24,6 +26,8 @@ func _process(delta: float) -> void:
 		attention = 100
 		MINIGAME_STATE = true
 		games_passed = 0
+		room.MoveToPhone()
+		await room.finishedMovement
 		minigame_cycle()
 	else:
 		attention -= delta * cognitive_decline
@@ -33,6 +37,8 @@ func _process(delta: float) -> void:
 func minigame_cycle():
 	if games_passed == num_of_games:
 		MINIGAME_STATE = false
+		room.MoveBack()
+		await room.finishedMovement
 	else:
 		start_new_game()
 
