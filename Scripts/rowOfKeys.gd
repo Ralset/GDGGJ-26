@@ -19,7 +19,6 @@ func _start() -> void:
 	WORD_DISPLAY.text = WORD_ARRAY
 
 func input(event: InputEvent) -> void:
-	print(x)
 	if event is not InputEventKey: 
 		return
 	if not event.pressed:          

@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform int zoom = 100;
+uniform int zoom = 75;
 uniform bool smoothed = true;
 uniform bool vertical = false;
 uniform bool noWrap = true;

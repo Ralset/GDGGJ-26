@@ -3,6 +3,7 @@ extends Node
 signal finished()
 
 @onready var SAFE_LOCK : TextureButton = $SafeLock
+@onready var GLIBA : TextureRect = $SafeLock/rotaryshit
 
 @export var SLOWNESS_FACTOR : float = 1
 
@@ -11,31 +12,31 @@ var finished_unwinding : bool = true
 var target_number : int = 5
 
 func _ready() -> void:
-	SAFE_LOCK.rotation = 0
+	GLIBA.rotation = 0
 
 func start(target_number : int):
 	self.target_number = target_number
 	finished_unwinding = false
-	SAFE_LOCK.disabled = true
+	GLIBA.disabled = true
 
 func _process(delta: float) -> void:
 	if !finished_unwinding:
-		if SAFE_LOCK.rotation <= 0:
+		if GLIBA.rotation <= 0:
 			finished_unwinding = true
-			SAFE_LOCK.disabled = false
-		SAFE_LOCK.rotation -= delta / SLOWNESS_FACTOR
+			GLIBA.disabled = false
+		GLIBA.rotation -= delta / SLOWNESS_FACTOR
 		return
 	
-	SAFE_LOCK.rotation = max(0, SAFE_LOCK.rotation)
-	if SAFE_LOCK.rotation >= target_number:
-		SAFE_LOCK.rotation = target_number
+	GLIBA.rotation = max(0, GLIBA.rotation)
+	if GLIBA.rotation >= target_number:
+		GLIBA.rotation = target_number
 		finished.emit()
 		return
 	
-	if toggled and SAFE_LOCK.rotation < target_number :
-		SAFE_LOCK.rotation += delta / SLOWNESS_FACTOR
-	elif SAFE_LOCK.rotation > 0 and toggled == false:
-		SAFE_LOCK.rotation -= delta / SLOWNESS_FACTOR
+	if toggled and GLIBA.rotation < target_number :
+		GLIBA.rotation += delta / SLOWNESS_FACTOR
+	elif GLIBA.rotation > 0 and toggled == false:
+		GLIBA.rotation -= delta / SLOWNESS_FACTOR
 	
 
 func _on_safe_lock_button_down() -> void:

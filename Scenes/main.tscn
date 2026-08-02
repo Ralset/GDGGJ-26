@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://bqvuwmjwek2j6" path="res://Scenes/RowOfKeys.tscn" id="4_6bp64"]
 [ext_resource type="PackedScene" uid="uid://b1v7kdtwc0o7e" path="res://Scenes/SimonSays.tscn" id="5_344ge"]
 [ext_resource type="Shader" uid="uid://q2ie4k551uoa" path="res://Shaders/Panorama.gdshader" id="7_6bp64"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="8_344ge"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jcp7b"]
 shader = ExtResource("7_6bp64")
-shader_parameter/zoom = 75
+shader_parameter/zoom = 150
 shader_parameter/smoothed = true
 shader_parameter/vertical = false
 shader_parameter/noWrap = true
@@ -24,40 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
-GAMES = [NodePath("Phone/OrderBoxes"), NodePath("Phone/SymonSays"), NodePath("Phone/RowOfKeys"), NodePath("Phone/TapInOrder")]
-
-[node name="MainGame" parent="." unique_id=224749775 instance=ExtResource("2_344ge")]
-layout_mode = 1
-
-[node name="Phone" type="Control" parent="." unique_id=1751920530]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SymonSays" parent="Phone" unique_id=226125644 instance=ExtResource("5_344ge")]
-visible = false
-layout_mode = 1
-
-[node name="RowOfKeys" parent="Phone" unique_id=598724246 instance=ExtResource("4_6bp64")]
-visible = false
-layout_mode = 1
-
-[node name="OrderBoxes" parent="Phone" unique_id=1705425106 instance=ExtResource("3_21xkr")]
-visible = false
-layout_mode = 1
-
-[node name="TapInOrder" parent="Phone" unique_id=602348723 instance=ExtResource("2_6bp64")]
-visible = false
-layout_mode = 1
-
-[node name="GradientGame" parent="Phone" unique_id=40155033 instance=ExtResource("2_21xkr")]
-visible = false
-layout_mode = 1
+GAMES = [NodePath("Room/Phone/SubViewportContainer/SubViewport/OrderBoxes"), NodePath("Room/Phone/SubViewportContainer/SubViewport/SymonSays"), NodePath("Room/Phone/SubViewportContainer/SubViewport/RowOfKeys"), NodePath("Room/Phone/SubViewportContainer/SubViewport/TapInOrder")]
 
 [node name="Overlay" type="CanvasLayer" parent="." unique_id=1636978981]
 
@@ -77,3 +45,75 @@ anchor_right = 1.0
 offset_bottom = 27.0
 grow_horizontal = 2
 value = 100.0
+
+[node name="Room" type="Control" parent="." unique_id=499795800]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainGame" parent="Room" unique_id=224749775 instance=ExtResource("2_344ge")]
+layout_mode = 1
+offset_left = 579.0
+offset_top = 398.0
+offset_right = 579.0
+offset_bottom = 398.0
+
+[node name="Phone" type="TextureRect" parent="Room" unique_id=905974307]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 81.0
+offset_top = -68.0
+offset_right = 209.0
+offset_bottom = 60.0
+grow_vertical = 2
+texture = ExtResource("8_344ge")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Room/Phone" unique_id=669615813]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+
+[node name="SubViewport" type="SubViewport" parent="Room/Phone/SubViewportContainer" unique_id=334542062]
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="SymonSays" parent="Room/Phone/SubViewportContainer/SubViewport" unique_id=226125644 instance=ExtResource("5_344ge")]
+visible = false
+offset_left = 148.0
+offset_top = 269.0
+offset_right = 148.0
+offset_bottom = 269.0
+
+[node name="RowOfKeys" parent="Room/Phone/SubViewportContainer/SubViewport" unique_id=598724246 instance=ExtResource("4_6bp64")]
+visible = false
+offset_left = 148.0
+offset_top = 269.0
+offset_right = 148.0
+offset_bottom = 269.0
+
+[node name="OrderBoxes" parent="Room/Phone/SubViewportContainer/SubViewport" unique_id=1705425106 instance=ExtResource("3_21xkr")]
+visible = false
+offset_left = 148.0
+offset_top = 269.0
+offset_right = 148.0
+offset_bottom = 269.0
+
+[node name="TapInOrder" parent="Room/Phone/SubViewportContainer/SubViewport" unique_id=602348723 instance=ExtResource("2_6bp64")]
+visible = false
+offset_left = 148.0
+offset_top = 269.0
+offset_right = 148.0
+offset_bottom = 269.0
+
+[node name="GradientGame" parent="Room/Phone/SubViewportContainer/SubViewport" unique_id=40155033 instance=ExtResource("2_21xkr")]
+visible = false
+offset_left = 148.0
+offset_top = 269.0
+offset_right = 148.0
+offset_bottom = 269.0
