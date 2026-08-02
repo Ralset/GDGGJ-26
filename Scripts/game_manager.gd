@@ -2,13 +2,20 @@ extends Control
 
 @export var GAMES : Array[minigame]
 @export var num_of_games : int = 5
+@export var LOCK_CNT : int = 5
+#@export var DIFFICULTY : int = 12
 
 @onready var attention_bar : ProgressBar = $Overlay/ProgressBar
 @onready var room : Control = $Room
+@onready var mainGame : Control = $Room/MainGame
+
 var attention : float
 var cognitive_decline : float = 10
 var current_game_id : int
 var games_passed : int
+var combination : Array[int]
+var number_idx : int
+
 
 var MINIGAME_STATE : bool = false
 
@@ -16,7 +23,28 @@ signal begunMinigame
 
 func _ready() -> void:
 	attention = 100
+	_generate_combination()
+	mainGame.connect("finished", _on_found_number)
+	number_idx = 0
+	_next_number()
 	MINIGAME_STATE = false
+
+func _generate_combination() -> void:
+	#var sum : int = DIFFICULTY
+	#var num = randi_range(1, 5)
+	for i in range(LOCK_CNT):
+		combination.append(randi_range(1, 5))
+
+func _next_number() -> void:
+	print(number_idx)
+	mainGame.start(combination[number_idx])
+
+func _on_found_number() -> void:
+	number_idx += 1
+	if number_idx == LOCK_CNT:
+		print("WIN")
+	else:
+		_next_number()
 
 func _process(delta: float) -> void:
 	if MINIGAME_STATE:
