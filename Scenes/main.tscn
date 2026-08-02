@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ew5woh84kpsb" path="res://Scenes/GradientGame.tscn" id="2_21xkr"]
 [ext_resource type="PackedScene" uid="uid://cc3da7rvyspug" path="res://Scenes/MainGame.tscn" id="2_344ge"]
 [ext_resource type="PackedScene" uid="uid://bcagmoajt81or" path="res://Scenes/OrderBoxes.tscn" id="3_21xkr"]
+[ext_resource type="Script" uid="uid://sklidsjx7nh0" path="res://Scenes/room.gd" id="3_hptm8"]
 [ext_resource type="PackedScene" uid="uid://bqvuwmjwek2j6" path="res://Scenes/RowOfKeys.tscn" id="4_6bp64"]
 [ext_resource type="PackedScene" uid="uid://b1v7kdtwc0o7e" path="res://Scenes/SimonSays.tscn" id="5_344ge"]
 [ext_resource type="Shader" uid="uid://q2ie4k551uoa" path="res://Shaders/Panorama.gdshader" id="7_6bp64"]
@@ -53,6 +54,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_hptm8")
 
 [node name="MainGame" parent="Room" unique_id=224749775 instance=ExtResource("2_344ge")]
 layout_mode = 1
