@@ -13,7 +13,7 @@ func _start() -> void:
 	WORD_DISPLAY.bbcode_enabled = true
 	for i in range(5):
 		var c = randi_range(97, 122)
-		WORD_ARRAY += char(c) + " "
+		WORD_ARRAY += char(c).to_upper() + " "
 		CHECK_ARRAY += char(c)
 	WORD_ARRAY[WORD_ARRAY.length() - 1] = ""
 	WORD_DISPLAY.text = WORD_ARRAY
@@ -35,9 +35,9 @@ func input(event: InputEvent) -> void:
 		var new = ""
 		for i in range(CHECK_ARRAY.length()):
 			if i <= x:
-				new += "[color=green]" + CHECK_ARRAY[i] + "[/color] "
+				new += "[color=green]" + CHECK_ARRAY[i].to_upper() + "[/color] "
 			else:
-				new += CHECK_ARRAY[i] + " "
+				new += CHECK_ARRAY[i].to_upper() + " "
 		WORD_DISPLAY.text = new
 		x += 1
 		if x == CHECK_ARRAY.length():
@@ -46,9 +46,9 @@ func input(event: InputEvent) -> void:
 		var new = ""
 		for i in range(CHECK_ARRAY.length()):
 			if i <= x:
-				new += "[color=red]" + CHECK_ARRAY[i] + "[/color] "
+				new += "[color=red]" + CHECK_ARRAY[i].to_upper() + "[/color] "
 			else:
-				new += CHECK_ARRAY[i] + " "
+				new += CHECK_ARRAY[i].to_upper() + " "
 			x += 1
 		WORD_DISPLAY.text = new
 		finish(false)
