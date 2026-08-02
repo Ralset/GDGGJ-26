@@ -50,10 +50,9 @@ grow_vertical = 2
 script = ExtResource("1_jjgbg")
 GAMES = [NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/OrderBoxes"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/SymonSays"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/RowOfKeys"), NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubViewport/TapInOrder")]
 num_of_games = 3
-LOCK_CNT = 1
 
 [node name="TimeLeft" type="Timer" parent="." unique_id=1245538273]
-wait_time = 5000.0
+wait_time = 200.0
 one_shot = true
 autostart = true
 
