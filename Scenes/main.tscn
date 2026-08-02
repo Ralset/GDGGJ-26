@@ -24,34 +24,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjgbg")
-GAMES = [NodePath("OrderBoxes"), NodePath("SymonSays"), NodePath("RowOfKeys"), NodePath("TapInOrder")]
+GAMES = [NodePath("Phone/OrderBoxes"), NodePath("Phone/SymonSays"), NodePath("Phone/RowOfKeys"), NodePath("Phone/TapInOrder")]
 
 [node name="MainGame" parent="." unique_id=224749775 instance=ExtResource("2_344ge")]
 layout_mode = 1
 
-[node name="SymonSays" parent="." unique_id=226125644 instance=ExtResource("5_344ge")]
+[node name="Phone" type="Control" parent="." unique_id=1751920530]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SymonSays" parent="Phone" unique_id=226125644 instance=ExtResource("5_344ge")]
 visible = false
 layout_mode = 1
 
-[node name="RowOfKeys" parent="." unique_id=598724246 instance=ExtResource("4_6bp64")]
+[node name="RowOfKeys" parent="Phone" unique_id=598724246 instance=ExtResource("4_6bp64")]
 visible = false
 layout_mode = 1
 
-[node name="OrderBoxes" parent="." unique_id=1705425106 instance=ExtResource("3_21xkr")]
+[node name="OrderBoxes" parent="Phone" unique_id=1705425106 instance=ExtResource("3_21xkr")]
 visible = false
 layout_mode = 1
 
-[node name="TapInOrder" parent="." unique_id=602348723 instance=ExtResource("2_6bp64")]
+[node name="TapInOrder" parent="Phone" unique_id=602348723 instance=ExtResource("2_6bp64")]
 visible = false
 layout_mode = 1
 
-[node name="GradientGame" parent="." unique_id=40155033 instance=ExtResource("2_21xkr")]
+[node name="GradientGame" parent="Phone" unique_id=40155033 instance=ExtResource("2_21xkr")]
 visible = false
 layout_mode = 1
 
-[node name="Minigames" type="CanvasLayer" parent="." unique_id=1636978981]
+[node name="Overlay" type="CanvasLayer" parent="." unique_id=1636978981]
 
-[node name="ColorRect" type="ColorRect" parent="Minigames" unique_id=989186624]
+[node name="Panorama effect" type="ColorRect" parent="Overlay" unique_id=989186624]
 material = SubResource("ShaderMaterial_jcp7b")
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,3 +69,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Overlay" unique_id=2022001450]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+value = 100.0
