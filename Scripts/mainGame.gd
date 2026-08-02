@@ -16,11 +16,18 @@ var target_number : int
 func _ready() -> void:
 	GLIBA.rotation = 0
 
-func start(num : int):
+func start(num : int) -> void:
 	target_number = num
 	print("START sa ", target_number)
 	finished_unwinding = false
 	SAFE_LOCK.disabled = true
+
+func out_of_focus() -> void:
+	toggled = false
+	SAFE_LOCK.disabled = true
+
+func in_focus() -> void:
+	SAFE_LOCK.disabled = false
 
 func _process(delta: float) -> void:
 	if !finished_unwinding:
@@ -42,9 +49,5 @@ func _process(delta: float) -> void:
 		GLIBA.rotation -= delta / UNWINDING
 	
 
-func _on_safe_lock_button_down() -> void:
-	toggled = true
-
-
-func _on_safe_lock_button_up() -> void:
-	toggled = false
+func _on_safe_lock_button_down() -> void: toggled = true
+func _on_safe_lock_button_up() -> void:   toggled = false

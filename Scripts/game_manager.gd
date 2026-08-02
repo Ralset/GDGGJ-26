@@ -39,6 +39,33 @@ func _ready() -> void:
 	_next_number()
 	MINIGAME_STATE = false
 
+func _process(delta: float) -> void:
+	timerDisplay.text = str(ceil(timer.time_left))
+	if timer.time_left == 0:
+		return
+	
+	if LOCKS_DONE == LOCK_CNT:
+		return
+	
+	if MINIGAME_STATE:
+		return
+	
+	if attention == 0:
+		attention = 100
+		MINIGAME_STATE = true
+		games_passed = 0
+		mainGame.out_of_focus()
+		room.MoveToPhone()
+		await room.finishedMovement
+		minigame_cycle()
+	else:
+		attention -= delta * cognitive_decline[number_idx]
+	attention = maxf(0, attention)
+	#attention_bar.value = attention
+	if not MINIGAME_STATE:
+		vignete.modulate.a = 1 - (attention/100.0)
+		vignete.modulate.a = minf(0.90, vignete.modulate.a)
+
 func _generate_combination() -> void:
 	#var sum : int = DIFFICULTY
 	#var num = randi_range(1, 5)
@@ -46,7 +73,6 @@ func _generate_combination() -> void:
 		combination.append(randi_range(1, 5))
 
 func _next_number() -> void:
-	print(number_idx)
 	mainGame.start(combination[number_idx])
 
 func _on_win():
@@ -73,36 +99,14 @@ func _on_found_number() -> void:
 	else:
 		_next_number()
 
-func _process(delta: float) -> void:
-	timerDisplay.text = str(ceil(timer.time_left))
-	if timer.time_left == 0:
-		return
-	
-	if LOCKS_DONE == LOCK_CNT:
-		return
-	
-	if MINIGAME_STATE:
-		return
-	
-	if attention == 0:
-		attention = 100
-		MINIGAME_STATE = true
-		games_passed = 0
-		room.MoveToPhone()
-		await room.finishedMovement
-		minigame_cycle()
-	else:
-		attention -= delta * cognitive_decline[number_idx]
-	attention = maxf(0, attention)
-	#attention_bar.value = attention
-	if not MINIGAME_STATE:
-		vignete.modulate.a = 1 - (attention/100.0)
-		vignete.modulate.a = minf(0.90, vignete.modulate.a)
+
+
 func minigame_cycle():
 	var vignetetween := create_tween()
 	vignetetween.tween_property(vignete, "modulate:a", 0.0, 0.2)
 	if games_passed == num_of_games:
 		MINIGAME_STATE = false
+		mainGame.in_focus()
 		room.MoveBack()
 		await room.finishedMovement
 	else:
