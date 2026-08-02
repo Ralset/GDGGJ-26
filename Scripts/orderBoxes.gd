@@ -52,7 +52,7 @@ func _on_button_click(id: int) -> void:
 
 func _set_box_text() -> void:
 	for i in range(5):
-		BUTTON_ARRAY[i].text = str(CURRENT_ARRAY[i])
+		BUTTON_ARRAY[i].text = " " + str(CURRENT_ARRAY[i]) + " "
 
 func _on_b_1_pressed() -> void: _on_button_click(0)
 func _on_b_2_pressed() -> void: _on_button_click(1)

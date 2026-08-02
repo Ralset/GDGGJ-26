@@ -21,7 +21,7 @@ shader_parameter/noWrap = true
 
 [sub_resource type="Gradient" id="Gradient_d1ilt"]
 offsets = PackedFloat32Array(0, 0.689781)
-colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 1)
+colors = PackedColorArray(0, 0, 0, 0.1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7y1x5"]
 gradient = SubResource("Gradient_d1ilt")
@@ -62,6 +62,7 @@ value = 100.0
 modulate = Color(1, 1, 1, 0)
 offset_right = 1158.0
 offset_bottom = 699.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_7y1x5")
 
 [node name="LockPickedCounter" type="RichTextLabel" parent="Overlay" unique_id=1358619602]
