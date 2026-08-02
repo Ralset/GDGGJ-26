@@ -1,11 +1,40 @@
 extends Control
 
 @export var GAMES : Array[minigame]
+@export var num_of_games : int = 5
 
+@onready var attention_bar : ProgressBar = $Overlay/ProgressBar
+
+var attention : float
+var cognitive_decline : float = 10
 var current_game_id : int
+var games_passed : int
+
+var MINIGAME_STATE : bool = false
 
 func _ready() -> void:
-	start_new_game()
+	attention = 100
+	MINIGAME_STATE = false
+
+func _process(delta: float) -> void:
+	if MINIGAME_STATE:
+		return
+	
+	if attention == 0:
+		attention = 100
+		MINIGAME_STATE = true
+		games_passed = 0
+		minigame_cycle()
+	else:
+		attention -= delta * cognitive_decline
+	attention = maxf(0, attention)
+	attention_bar.value = attention
+
+func minigame_cycle():
+	if games_passed == num_of_games:
+		MINIGAME_STATE = false
+	else:
+		start_new_game()
 
 func start_new_game() -> void:
 	var new_game_pick = randi_range(0, GAMES.size() - 1)
@@ -22,7 +51,8 @@ func restart_game() -> void:
 
 func _on_minigame_finished(passed : bool) -> void:
 	if passed:
+		games_passed += 1
 		GAMES[current_game_id].disconnect("minigame_finished", _on_minigame_finished)
-		start_new_game()
+		minigame_cycle()
 	else:
 		restart_game()
