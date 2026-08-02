@@ -15,67 +15,65 @@ script = ExtResource("1_mnrvy")
 
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1851909767]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -410.75
-offset_top = -74.9375
-offset_right = 410.75
-offset_bottom = 74.9375
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.445, 0.25)
+offset_transform_visual_only = false
 theme_override_constants/separation = 20
 
 [node name="b1" type="Button" parent="HBox" unique_id=413073907]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 
 [node name="b2" type="Button" parent="HBox" unique_id=540713629]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 
 [node name="b3" type="Button" parent="HBox" unique_id=1587979089]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 
 [node name="b4" type="Button" parent="HBox" unique_id=1449290689]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 
 [node name="b5" type="Button" parent="HBox" unique_id=797305908]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=54692136]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -307.0
-offset_right = 308.0
-offset_bottom = 198.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 78.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_visual_only = false
 theme_override_constants/margin_top = 24
 
 [node name="OrderLabel" type="RichTextLabel" parent="MarginContainer" unique_id=796832430]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 23
+text = "afafdadfafd"
+fit_content = true
 horizontal_alignment = 1
 
 [connection signal="pressed" from="HBox/b1" to="." method="_on_b_1_pressed"]

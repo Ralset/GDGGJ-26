@@ -29,18 +29,15 @@ script = ExtResource("1_ged52")
 [node name="Panel" type="Panel" parent="." unique_id=504072824]
 z_index = 5
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -376.375
-offset_top = -93.5
-offset_right = 376.375
-offset_bottom = 93.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.5, 0.5)
+offset_transform_visual_only = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_ged52")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=2007887375]
