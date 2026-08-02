@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	
 	GLIBA.rotation = max(0, GLIBA.rotation)
 	if GLIBA.rotation >= target_number:
-		GLIBA.rotation = target_number
+		GLIBA.rotation = target_number-1
 		finished.emit()
 		return
 	

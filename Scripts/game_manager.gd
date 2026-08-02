@@ -68,7 +68,7 @@ func _on_found_number() -> void:
 	number_idx += 1
 	LOCKS_DONE += 1
 	lockCounter.text = str(LOCKS_DONE) + " / " + str(LOCK_CNT)
-	if number_idx == LOCK_CNT:
+	if number_idx >= LOCK_CNT:
 		_on_win()
 	else:
 		_next_number()
