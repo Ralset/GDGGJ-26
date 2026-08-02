@@ -3,11 +3,15 @@ extends Control
 @export var GAMES : Array[minigame]
 @export var num_of_games : int = 5
 @export var LOCK_CNT : int = 5
+@export var LOCKS_DONE : int = 0
 #@export var DIFFICULTY : int = 12
 
 @onready var attention_bar : ProgressBar = $Overlay/ProgressBar
 @onready var room : Control = $Room
 @onready var mainGame : Control = $Room/MainGame
+@onready var lockCounter : RichTextLabel = $Overlay/LockPickedCounter
+@onready var timer : Timer = $Overlay/TimeLeft
+@onready var timerDisplay : Label = $Overlay/TimerDisplay
 
 var attention : float
 var cognitive_decline : float = 10
@@ -22,6 +26,7 @@ var MINIGAME_STATE : bool = false
 signal begunMinigame
 
 func _ready() -> void:
+	lockCounter.text = str(LOCKS_DONE) + " / " + str(LOCK_CNT)
 	attention = 100
 	_generate_combination()
 	mainGame.connect("finished", _on_found_number)
@@ -41,12 +46,19 @@ func _next_number() -> void:
 
 func _on_found_number() -> void:
 	number_idx += 1
+	LOCKS_DONE += 1
+	lockCounter.text = str(LOCKS_DONE) + " / " + str(LOCK_CNT)
 	if number_idx == LOCK_CNT:
 		print("WIN")
 	else:
 		_next_number()
 
 func _process(delta: float) -> void:
+	timerDisplay.text = str(ceil(timer.time_left))
+	
+	if timer.time_left < 0.1:
+		print("cooked")
+	
 	if MINIGAME_STATE:
 		return
 	
