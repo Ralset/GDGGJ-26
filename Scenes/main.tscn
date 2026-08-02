@@ -52,13 +52,15 @@ GAMES = [NodePath("Room/Phone/MarginContainer/Panel/SubViewportContainer/SubView
 num_of_games = 3
 
 [node name="TimeLeft" type="Timer" parent="." unique_id=1245538273]
-wait_time = 150.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 
 [node name="Overlay" type="CanvasLayer" parent="." unique_id=1636978981]
+process_mode = 3
 
 [node name="Panorama effect" type="ColorRect" parent="Overlay" unique_id=989186624]
+process_mode = 3
 material = SubResource("ShaderMaterial_jcp7b")
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,6 +71,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="Overlay" unique_id=2022001450]
+process_mode = 3
 visible = false
 anchors_preset = 10
 anchor_right = 1.0
@@ -77,6 +80,7 @@ grow_horizontal = 2
 value = 100.0
 
 [node name="TextureRect" type="TextureRect" parent="Overlay" unique_id=1623891717]
+process_mode = 3
 modulate = Color(1, 1, 1, 0)
 offset_right = 1158.0
 offset_bottom = 699.0
@@ -85,6 +89,7 @@ texture = SubResource("GradientTexture2D_7y1x5")
 metadata/_edit_lock_ = true
 
 [node name="LockPickedCounter" type="RichTextLabel" parent="Overlay" unique_id=1358619602]
+process_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -99,6 +104,7 @@ theme_override_font_sizes/normal_font_size = 48
 metadata/_edit_use_anchors_ = true
 
 [node name="TimerDisplay" type="Label" parent="Overlay" unique_id=833520363]
+process_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -116,18 +122,21 @@ theme_override_font_sizes/font_size = 48
 metadata/_edit_use_anchors_ = true
 
 [node name="opensafe" type="Sprite2D" parent="Overlay" unique_id=1028608222]
+process_mode = 3
 visible = false
 position = Vector2(582, 396)
 scale = Vector2(0.49800396, 0.49800396)
 texture = ExtResource("5_h1bgf")
 
 [node name="miniflight" type="Sprite2D" parent="Overlay" unique_id=2065364227]
+process_mode = 3
 visible = false
 position = Vector2(582, 387)
 scale = Vector2(0.42239583, 0.42239583)
 texture = ExtResource("3_6iyac")
 
 [node name="safedoor" type="Node2D" parent="Overlay" unique_id=1422431162]
+process_mode = 3
 visible = false
 
 [node name="fullsafe" type="Sprite2D" parent="Overlay/safedoor" unique_id=1191200023]
@@ -146,10 +155,11 @@ scale = Vector2(0.4135135, 0.4135135)
 texture = ExtResource("7_b3802")
 
 [node name="Path2D" type="Path2D" parent="Overlay" unique_id=1299892049]
+process_mode = 3
 curve = SubResource("Curve2D_fdnlq")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Overlay/Path2D" unique_id=91213862]
-visible = false
+process_mode = 3
 position = Vector2(1713.1394, 354.97687)
 rotation = 2.674868
 progress = 25.388306
@@ -162,6 +172,7 @@ scale = Vector2(1.7856246, 1.7856246)
 texture = ExtResource("3_6iyac")
 
 [node name="bars" type="Sprite2D" parent="Overlay" unique_id=95985095]
+process_mode = 3
 position = Vector2(583.75, -500)
 scale = Vector2(1.4388264, 1.6809524)
 texture = ExtResource("4_fdnlq")

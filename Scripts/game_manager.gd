@@ -38,7 +38,6 @@ func _ready() -> void:
 	number_idx = 0
 	_next_number()
 	MINIGAME_STATE = false
-	_on_win()
 
 func _generate_combination() -> void:
 	#var sum : int = DIFFICULTY
@@ -51,7 +50,6 @@ func _next_number() -> void:
 	mainGame.start(combination[number_idx])
 
 func _on_win():
-	print("WIN")
 	timer.stop()
 	safedoor.show()
 	opensafe.show()
@@ -77,6 +75,9 @@ func _on_found_number() -> void:
 
 func _process(delta: float) -> void:
 	timerDisplay.text = str(ceil(timer.time_left))
+	if timer.time_left == 0:
+		return
+	
 	if LOCKS_DONE == LOCK_CNT:
 		return
 	
@@ -130,6 +131,8 @@ func _on_minigame_finished(passed : bool) -> void:
 
 
 func _on_time_left_timeout() -> void:
+	timer.stop()
+	vignete.modulate.a = 0
 	flight.show()
 	var tween = create_tween()
 	tween.tween_property(flight, "progress_ratio", 1.0, 1.5).set_trans(Tween.TRANS_EXPO)
