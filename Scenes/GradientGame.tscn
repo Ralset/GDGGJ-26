@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://tf1d5ptcp2t5" path="res://Scripts/gradient_game_manager.gd" id="1_ged52"]
 [ext_resource type="Script" uid="uid://bhskytsmgj23d" path="res://Scripts/gradient_game.gd" id="1_oimge"]
-[ext_resource type="Script" uid="uid://s1j7iw4gp0pd" path="res://Scripts/draggable_object.gd" id="2_byg7n"]
+[ext_resource type="PackedScene" uid="uid://c5rcjqfxnqlit" path="res://Scenes/gradient_panel.tscn" id="3_ged52"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ged52"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -14,8 +14,6 @@ expand_margin_left = 10.0
 expand_margin_top = 10.0
 expand_margin_right = 10.0
 expand_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byg7n"]
 
 [node name="GradientGame" type="Control" unique_id=40155033]
 layout_mode = 3
@@ -62,20 +60,4 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 script = ExtResource("1_oimge")
-
-[node name="Control" type="Control" parent="Panel/HBoxContainer" unique_id=1458129432]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("2_byg7n")
-
-[node name="Panel" type="Panel" parent="Panel/HBoxContainer/Control" unique_id=131077941]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 111.0
-grow_vertical = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_byg7n")
-
-[connection signal="gui_input" from="Panel/HBoxContainer/Control" to="Panel/HBoxContainer/Control" method="_on_gui_input"]
+gradientPanel = ExtResource("3_ged52")

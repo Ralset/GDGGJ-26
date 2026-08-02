@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c5rcjqfxnqlit"]
+
+[ext_resource type="Script" uid="uid://s1j7iw4gp0pd" path="res://Scripts/draggable_object.gd" id="1_vunh6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byg7n"]
+
+[node name="Control" type="Control" unique_id=112495650]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+script = ExtResource("1_vunh6")
+
+[node name="Panel" type="Panel" parent="." unique_id=1378164632]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 111.0
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_byg7n")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
