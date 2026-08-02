@@ -12,6 +12,8 @@ extends Control
 @onready var lockCounter : RichTextLabel = $Overlay/LockPickedCounter
 @onready var timer : Timer = $Overlay/TimeLeft
 @onready var timerDisplay : Label = $Overlay/TimerDisplay
+@onready var vignete = $Overlay/TextureRect
+
 
 var attention : float
 var cognitive_decline : float = 10
@@ -23,7 +25,6 @@ var number_idx : int
 
 var MINIGAME_STATE : bool = false
 
-signal begunMinigame
 
 func _ready() -> void:
 	lockCounter.text = str(LOCKS_DONE) + " / " + str(LOCK_CNT)
@@ -72,9 +73,13 @@ func _process(delta: float) -> void:
 	else:
 		attention -= delta * cognitive_decline
 	attention = maxf(0, attention)
-	attention_bar.value = attention
-
+	#attention_bar.value = attention
+	if not MINIGAME_STATE:
+		vignete.modulate.a = 1 - (attention/100.0)
+		vignete.modulate.a = minf(0.90, vignete.modulate.a)
 func minigame_cycle():
+	var vignetetween := create_tween()
+	vignetetween.tween_property(vignete, "modulate:a", 0.0, 0.2)
 	if games_passed == num_of_games:
 		MINIGAME_STATE = false
 		room.MoveBack()
