@@ -26,12 +26,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_ged52")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=15748899]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.42, 0.42, 0.42, 1)
-
 [node name="Panel" type="Panel" parent="." unique_id=504072824]
 z_index = 5
 layout_mode = 1

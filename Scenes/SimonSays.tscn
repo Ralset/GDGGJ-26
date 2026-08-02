@@ -13,17 +13,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_w4r3a")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1266035871]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color(0.41960785, 0.41960785, 0.41960785, 1)
-
 [node name="DisplayLabel" type="RichTextLabel" parent="." unique_id=2058326577]
 layout_mode = 1
 anchors_preset = 8
