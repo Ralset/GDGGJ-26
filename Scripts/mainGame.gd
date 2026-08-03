@@ -13,9 +13,6 @@ var toggled : bool = false
 var finished_unwinding : bool = true
 var target_number : int
 
-func _ready() -> void:
-	ROTATING_THING.rotation = 0
-
 func start(num : int) -> void:
 	target_number = num
 	print("START sa ", target_number)
@@ -36,11 +33,12 @@ func _process(delta: float) -> void:
 			finished_unwinding = true
 			SAFE_LOCK.disabled = false
 		ROTATING_THING.rotation -= delta / RESET
+		ROTATING_THING.rotation = max(0, ROTATING_THING.rotation)
 		return
 	
-	ROTATING_THING.rotation = max(0, ROTATING_THING.rotation)
 	if ROTATING_THING.rotation >= target_number:
-		ROTATING_THING.rotation = target_number-1
+		ROTATING_THING.rotation = target_number
+		finished_unwinding = false
 		finished.emit()
 		return
 	
@@ -49,6 +47,7 @@ func _process(delta: float) -> void:
 	elif ROTATING_THING.rotation > 0 and toggled == false:
 		ROTATING_THING.rotation -= delta / UNWINDING
 	
+	ROTATING_THING.rotation = max(0, ROTATING_THING.rotation)
 
 func _on_safe_lock_button_down() -> void: toggled = true
 func _on_safe_lock_button_up() -> void:   toggled = false
