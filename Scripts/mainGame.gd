@@ -2,19 +2,19 @@ extends Node
 
 signal finished()
 
-@onready var SAFE_LOCK : TextureButton = $SafeLock
-@onready var GLIBA : TextureRect = $SafeLock/rotaryshit
-
 @export var UNWINDING : float = 20
 @export var WINDING : float = 2.5
 @export var RESET : float = 0.5
+
+@onready var SAFE_LOCK : TextureButton = $SafeLock
+@onready var ROTATING_THING : TextureRect = $SafeLock/rotaryshit
 
 var toggled : bool = false
 var finished_unwinding : bool = true
 var target_number : int
 
 func _ready() -> void:
-	GLIBA.rotation = 0
+	ROTATING_THING.rotation = 0
 
 func start(num : int) -> void:
 	target_number = num
@@ -27,26 +27,27 @@ func out_of_focus() -> void:
 	SAFE_LOCK.disabled = true
 
 func in_focus() -> void:
-	SAFE_LOCK.disabled = false
+	if finished_unwinding:
+		SAFE_LOCK.disabled = false
 
 func _process(delta: float) -> void:
 	if !finished_unwinding:
-		if GLIBA.rotation <= 0:
+		if ROTATING_THING.rotation <= 0:
 			finished_unwinding = true
 			SAFE_LOCK.disabled = false
-		GLIBA.rotation -= delta / RESET
+		ROTATING_THING.rotation -= delta / RESET
 		return
 	
-	GLIBA.rotation = max(0, GLIBA.rotation)
-	if GLIBA.rotation >= target_number:
-		GLIBA.rotation = target_number-1
+	ROTATING_THING.rotation = max(0, ROTATING_THING.rotation)
+	if ROTATING_THING.rotation >= target_number:
+		ROTATING_THING.rotation = target_number-1
 		finished.emit()
 		return
 	
-	if toggled and GLIBA.rotation < target_number :
-		GLIBA.rotation += delta / WINDING
-	elif GLIBA.rotation > 0 and toggled == false:
-		GLIBA.rotation -= delta / UNWINDING
+	if toggled and ROTATING_THING.rotation < target_number :
+		ROTATING_THING.rotation += delta / WINDING
+	elif ROTATING_THING.rotation > 0 and toggled == false:
+		ROTATING_THING.rotation -= delta / UNWINDING
 	
 
 func _on_safe_lock_button_down() -> void: toggled = true

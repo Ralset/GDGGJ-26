@@ -178,6 +178,7 @@ position = Vector2(-199.22787, -30.982033)
 rotation = 3.4278266
 scale = Vector2(1.7856246, 1.7856246)
 texture = ExtResource("3_6iyac")
+metadata/_edit_lock_ = true
 
 [node name="bars" type="Sprite2D" parent="Overlay" unique_id=95985095]
 process_mode = 3
