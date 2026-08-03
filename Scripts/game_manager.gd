@@ -16,6 +16,8 @@ extends Control
 @onready var vignete = $Overlay/TextureRect
 @onready var flight = $Overlay/Path2D/PathFollow2D
 @onready var bars = $Overlay/bars 
+@onready var BarsPlayer : AudioStreamPlayer = $BarsPlayer
+@onready var BurpPlayer : AudioStreamPlayer = $BurpPlayer
 
 @onready var safedoor = $Overlay/safedoor
 @onready var opensafe = $Overlay/opensafe
@@ -87,8 +89,13 @@ func _on_win():
 	var been = create_tween()
 	been.tween_property(miniflight, "scale", Vector2(2.0, 2.0), 0.75).set_trans(Tween.TRANS_EXPO)
 	await been.finished
+	BarsPlayer.play(2)
 	var seen = create_tween()
 	seen.tween_property(bars, "position:y", 349.305, 2.5)
+	await seen.finished
+	BurpPlayer.play()
+	await get_tree().create_timer(1.3).timeout
+	BurpPlayer.stop()
 
 func _on_found_number() -> void:
 	number_idx += 1
@@ -98,8 +105,6 @@ func _on_found_number() -> void:
 		_on_win()
 	else:
 		_next_number()
-
-
 
 func minigame_cycle():
 	var vignetetween := create_tween()
@@ -141,5 +146,10 @@ func _on_time_left_timeout() -> void:
 	var tween = create_tween()
 	tween.tween_property(flight, "progress_ratio", 1.0, 1.5).set_trans(Tween.TRANS_EXPO)
 	await tween.finished
+	BarsPlayer.play(2)
 	var seen = create_tween()
 	seen.tween_property(bars, "position:y", 349.305, 2.5)
+	await seen.finished
+	BurpPlayer.play()
+	await get_tree().create_timer(1.3).timeout
+	BurpPlayer.stop()
